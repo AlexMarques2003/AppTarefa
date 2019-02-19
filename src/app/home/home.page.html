@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>
+      TAREFAS
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- ion list permite arrastar o item da lista para o lado -->
+  <ion-list no-lines>
+    <ion-item *ngIf="tasks.lenght < 1">
+      <ion-label text-center text-uppercase>Não há tarefas</ion-label>
+    </ion-item>
+
+    <ion-item-sliding *ngFor="let task of tasks" #slidingTask>
+      <ion-item (click)="openActions(task)">
+        <ion-label text-uppercase>{{task.name}}</ion-label>
+        <ion-icon *ngIf="!task.done" slot="start" name="radio-button-off"></ion-icon>
+        <ion-icon *ngIf="task.done" slot="start" name="checkmark-circle" color="sucess"></ion-icon>
+      </ion-item>
+      <ion-item-options side="start">
+        <ion-item-option (click)="delete(slidingTask, task)" color="danger">Excluir</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="showAdd()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
