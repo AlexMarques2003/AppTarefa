@@ -90,18 +90,17 @@ export class HomePage {
     await actionSheet.present();
   }
 
+  // documentação: https://developer.mozilla.org/pt-BR/docs/Web/API/Storage/LocalStorage
   updateLocalStorage(){
     localStorage.setItem('tasksDb', JSON.stringify(this.tasks));  
+    //alert( "Tarefa = " + localStorage.getItem("name"));
   }
   
   async delete(slidingTask: IonItemSliding, task: any){
-    
     // Atualizando o array de tasks com todas as tasks que não sejam a selecionada, ou seja retirando do array a task selecionada e atualizando o array.
     this.tasks = this.tasks.filter(taskArray => task != taskArray);
     this.updateLocalStorage();
     slidingTask.close();
-    
-    
   }
 
 
